@@ -1,14 +1,8 @@
-Template.home.onCreated(function homeOnCreated() {
-  let ctrl = this;
-  this.movies = new ReactiveVar();
-  HTTP.call('GET', 'http://localhost:3000/api/discover/movie', {},
-  function(error, response) {
-  // Handle the error or response here.
-  ctrl.movies.set(JSON.parse(response.content).results)
-  });
-  });
-  Template.home.helpers({
-  movies() {
-  return Template.instance().movies.get();
-  }
-  });
+import React from 'react';
+import { Meteor } from 'meteor/meteor';
+import { render } from 'react-dom';
+import { App } from '/imports/ui/App';
+
+Meteor.startup(() => {
+  render(<App/>, document.getElementById('react-target'));
+});
